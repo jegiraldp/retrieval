@@ -1,9 +1,40 @@
+from palabra import *
 
 def analizarOcurrencias(la_lista):
     la_lista2=la_lista
-    for i in range(len(la_lista)):
-        for j in range(len(la_lista2)):
-            if la_lista[i].nombre==la_lista2[j].nombre:
-                la_lista[i].cantidad+=1
-                #print(la_lista[i].nombre+"--"+str(la_lista[i].cantidad))
-    print (la_lista[0].nombre+"--"+str(la_lista[0].cantidad))
+    for i in la_lista:
+        for j in la_lista2:
+            if(i.nombre==j.nombre):
+                i.cantidad+=1
+    return la_lista
+
+def listaObjetos(listaTexto):
+    listaObjetos=[]
+    for i in listaTexto:
+        listaObjetos.append(palabra(i,0))
+    return listaObjetos
+
+def limpiarStopWords(documentText,listaStop):
+    listaSinStop=[]
+    for w in documentText:
+        if w not in listaStop:
+            listaSinStop.append(w)
+    return listaSinStop
+
+def delRepetidos(listaTexto):
+    listaSinRepetidos=[]
+    for j in listaTexto:
+        if j not in listaSinRepetidos:
+            listaSinRepetidos.append(j)
+    return listaSinRepetidos
+
+def ranking(listObjOccur, listSinRepe):
+    aux=[]
+    for j in listSinRepe:
+        aux.append(palabra(j,0))
+
+    for jo in aux:
+        for jor in listObjOccur:
+            if jo.nombre==jor.nombre:
+                jo.cantidad=jor.cantidad
+    return aux
