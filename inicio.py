@@ -32,5 +32,6 @@ print('Ranking...(in progress)')
 time.sleep(tiempo)
 print('Ranking...(done)')
 print ("\n*********************************\n")
+
 for ll in lf:
     print (ll.nombre+":"+str(ll.cantidad))

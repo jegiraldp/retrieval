@@ -9,12 +9,33 @@ def stopwords():
     return words
 
 def leerDocumento():
-    docu = Document('archivos/archivo.docx')
+    docu = Document('archivos/capitulo.docx')
     texto = ""
     words=[]
-    lista=[]
 
     for i in docu.paragraphs:
         texto += i.text.lower() + " "
+        texto=especiales(texto)
         words=texto.split()
     return words
+
+def especiales(texto):
+    texto=texto.replace('(','')
+    texto = texto.replace(')', '')
+    texto = texto.replace('+', '')
+    texto = texto.replace('-', '')
+    texto = texto.replace('*', '')
+    texto = texto.replace('%', '')
+    texto = texto.replace('#', '')
+    texto = texto.replace('$', '')
+    texto = texto.replace('\&', '')
+    texto = texto.replace('?', '')
+    texto = texto.replace('¿', '')
+    texto = texto.replace(';', '')
+    texto = texto.replace(',', '')
+    texto = texto.replace('~', '')
+    texto = texto.replace('{','')
+    texto = texto.replace('}','')
+    texto = texto.replace('[','')
+    texto = texto.replace(']','')
+    return texto
