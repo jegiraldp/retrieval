@@ -1,37 +1,43 @@
 import time
 from analizar import *
-from loadInicio import stopwords, leerDocumento
+from loadInicio import stopwords, leerDocumento,getDocumento
 tiempo=0
 ############################-----inicia-----############################
-print("\n\n------------- Super_Analizador T2018 -------------\n")
+print("\n\n------------- Analizer T-2018 -------------\n")
 #######
-print('Document Analysing...(in progress)')
+tinicio='init:'+str(time.ctime())
+print('Document Analysing... -- ('+getDocumento()+') (in progress...)')
 stopw_list=stopwords()
 documentText=leerDocumento()
 time.sleep(tiempo)
-print('Document Analysing...(done)')
+print('Document Analysing...'+':(words:'+str(len(documentText))+') -- no specials characters')
 ##########
 listSinStop=limpiarStopWords(documentText, stopw_list)
-print('Cleaning stop-words...(in progress)')
 time.sleep(tiempo)
-print('Cleaning stop-words...(done)')
+print('Cleaning stop-words...')
 ##########
-listSinRepe=delRepetidos(listSinStop)
-print('Cleaning duplicate-words...(in progress)')
-time.sleep(tiempo)
-print('Cleaning duplicate-words...(done)')
 ##########
+print('Defining occurrences...')
 listObj=listaObjetos(documentText)
 listObjOccur=analizarOcurrencias(listObj)
-print('Defining occurrences...(in progress)')
 time.sleep(tiempo)
-print('Defining occurrences...(done)')
+###########
+print('Cleaning duplicate-words...')
+listSinRepe=delRepetidos(listSinStop)
+time.sleep(tiempo)
 ##########
+##########
+print('Ranking...')
 lf=ranking(listObjOccur,listSinRepe)
-print('Ranking...(in progress)')
 time.sleep(tiempo)
-print('Ranking...(done)')
-print ("\n*********************************\n")
 
-for ll in lf:
-    print (ll.nombre+":"+str(ll.cantidad))
+#####
+print ('+++')
+print (tinicio)
+print ('end:'+str(time.ctime()))
+print ("*************Resultados********************")
+###
+info=""
+for ll in lf[:30]:
+    info+=ll.nombre+":"+str(ll.cantidad)+"  "
+print (info)

@@ -36,6 +36,6 @@ def ranking(listObjOccur, listSinRepe):
     for jo in aux:
         for jor in listObjOccur:
             if jo.nombre==jor.nombre:
-                jo.cantidad=jor.cantidad
+                jo.cantidad =jor.cantidad
     aux.sort(key=lambda x: x.cantidad, reverse=True)
     return aux
